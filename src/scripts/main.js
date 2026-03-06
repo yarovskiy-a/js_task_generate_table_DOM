@@ -355,6 +355,46 @@ const people = [
 ];
 
 // eslint-disable-next-line no-console
-console.log(people); // you can remove it
 
-// write your code here
+function getCentury(year) {
+  if (year < 1) {
+    return 1;
+  }
+
+  const x = year / 100;
+
+  return Math.ceil(x);
+}
+
+function genPersonData(peop, ind) {
+  const nam = peop[ind].name;
+  const age = peop[ind].died - peop[ind].born;
+  const centur = getCentury(peop[ind].died);
+  let poplSex = '';
+
+  if (peop[ind].sex === 'm') {
+    poplSex = 'Male';
+  } else {
+    poplSex = 'Female';
+  }
+
+  const person = [nam, poplSex, peop[ind].born, peop[ind].died, age, centur];
+
+  return person;
+}
+
+const table = document.querySelector('.dashboard');
+
+for (let r = 0; r < people.length; r++) {
+  const raw = document.createElement('tr');
+
+  const currentPerson = genPersonData(people, r);
+
+  for (let i = 0; i < 6; i++) {
+    const cell = document.createElement('td');
+
+    cell.textContent = currentPerson[i];
+    raw.append(cell);
+  }
+  table.append(raw);
+}
