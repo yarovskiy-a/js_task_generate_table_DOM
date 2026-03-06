@@ -371,7 +371,6 @@ function genPersonData(peop) {
   const age = peop.died - peop.born;
   const centur = getCentury(peop.died);
 
-
   const person = [nam, peop.sex, peop.born, peop.died, age, centur];
 
   return person;
