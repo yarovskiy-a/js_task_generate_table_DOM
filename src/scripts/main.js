@@ -366,19 +366,19 @@ function getCentury(year) {
   return Math.ceil(x);
 }
 
-function genPersonData(peop, ind) {
-  const nam = peop[ind].name;
-  const age = peop[ind].died - peop[ind].born;
-  const centur = getCentury(peop[ind].died);
+function genPersonData(peop) {
+  const nam = peop.name;
+  const age = peop.died - peop.born;
+  const centur = getCentury(peop.died);
   let poplSex = '';
 
-  if (peop[ind].sex === 'm') {
+  if (peop.sex === 'm') {
     poplSex = 'Male';
   } else {
     poplSex = 'Female';
   }
 
-  const person = [nam, poplSex, peop[ind].born, peop[ind].died, age, centur];
+  const person = [nam, poplSex, peop.born, peop.died, age, centur];
 
   return person;
 }
@@ -388,12 +388,12 @@ const table = document.querySelector('.dashboard');
 for (let r = 0; r < people.length; r++) {
   const raw = document.createElement('tr');
 
-  const currentPerson = genPersonData(people, r);
+  const currentPerson = genPersonData(people[r]);
 
-  for (let i = 0; i < 6; i++) {
+  for (const value of currentPerson) {
     const cell = document.createElement('td');
 
-    cell.textContent = currentPerson[i];
+    cell.textContent = value;
     raw.append(cell);
   }
   table.append(raw);
