@@ -370,15 +370,9 @@ function genPersonData(peop) {
   const nam = peop.name;
   const age = peop.died - peop.born;
   const centur = getCentury(peop.died);
-  let poplSex = '';
 
-  if (peop.sex === 'm') {
-    poplSex = 'Male';
-  } else {
-    poplSex = 'Female';
-  }
 
-  const person = [nam, poplSex, peop.born, peop.died, age, centur];
+  const person = [nam, peop.sex, peop.born, peop.died, age, centur];
 
   return person;
 }
